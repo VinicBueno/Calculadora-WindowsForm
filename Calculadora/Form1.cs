@@ -12,7 +12,7 @@ namespace Calculadora
 {
     public partial class F_Principal : Form
     {
-        public bool LT = true;
+        public bool LT = true, DOT = true, OP = true;
         public F_Principal()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "1";
+            OP = true;
         }
 
         private void btn_2_Click(object sender, EventArgs e)
@@ -35,6 +36,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "2";
+            OP = true;
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -44,6 +46,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "3";
+            OP = true;
         }
 
         private void btn_4_Click(object sender, EventArgs e)
@@ -54,6 +57,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "4";
+            OP = true;
         }
 
         private void btn_5_Click(object sender, EventArgs e)
@@ -64,6 +68,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "5";
+            OP = true;
         }
 
         private void btn_6_Click(object sender, EventArgs e)
@@ -74,6 +79,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "6";
+            OP = true;
         }
 
         private void btn_7_Click(object sender, EventArgs e)
@@ -84,6 +90,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "7";
+            OP = true;
         }
 
         private void btn_8_Click(object sender, EventArgs e)
@@ -94,6 +101,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "8";
+            OP = true;
         }
 
         private void btn_9_Click(object sender, EventArgs e)
@@ -104,6 +112,7 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "9";
+            OP = true;
         }
 
         private void btn_0_Click(object sender, EventArgs e)
@@ -114,16 +123,22 @@ namespace Calculadora
                 LT = false;
             }
             tb_pricipal.Text += "0";
+            OP = true;
         }
 
         private void btn_dot_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (DOT && !LT) 
             {
-                tb_pricipal.Text = "";
-                LT = false;
+                tb_pricipal.Text += ".";
+                DOT = false;
             }
-            tb_pricipal.Text += ".";
+            else if (LT)
+            {
+                tb_pricipal.Text = "0.";
+                LT = false;
+                DOT = false;
+            }
         }
 
         private void btn_result_Click(object sender, EventArgs e)
@@ -134,16 +149,16 @@ namespace Calculadora
                 tb_pricipal.Text = "0";
             }
             LT = true;
+            DOT = true;
         }
 
         private void btn_plus_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (OP && !LT)
             {
-                tb_pricipal.Text = "";
-                LT = false;
+                tb_pricipal.Text += "+";
+                OP = false;
             }
-            tb_pricipal.Text += "+";
         }
 
         private void btn_minus_Click(object sender, EventArgs e)
@@ -153,33 +168,35 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "-";
+            if (OP)
+            {
+                tb_pricipal.Text += "-";
+                OP = false;
+            }
         }
 
         private void btn_times_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (OP && !LT)
             {
-                tb_pricipal.Text = "";
-                LT = false;
+                tb_pricipal.Text += "x";
+                OP = false;
             }
-            tb_pricipal.Text += "x";
         }
-
         private void btn_divid_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (OP && !LT) 
             {
-                tb_pricipal.Text = "";
-                LT = false;
+                tb_pricipal.Text += "/";
+                OP = false;
             }
-            tb_pricipal.Text += "/";
         }
 
         private void btn_CE_Click(object sender, EventArgs e)
         {
             tb_pricipal.Text = "0";
             LT = true;
+            DOT=true;
         }
 
         private void btn_par1_Click(object sender, EventArgs e)
