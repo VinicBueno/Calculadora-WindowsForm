@@ -1,0 +1,13 @@
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.csprojAssemblyReference.cache
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.F_Principal.resources
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.Properties.Resources.resources
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.F_Principal.pt-BR.resources
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.csproj.GenerateResource.cache
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.csproj.CoreCompileInputs.cache
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\bin\Debug\Calculadora.exe.config
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\bin\Debug\Calculadora.exe
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\bin\Debug\Calculadora.pdb
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\bin\Debug\pt-BR\Calculadora.resources.dll
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\pt-BR\Calculadora.resources.dll
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.exe
+C:\Users\cliente\Documents\MyProjects\Calculadora-WindowsForm\Calculadora\obj\Debug\Calculadora.pdb
