@@ -24,7 +24,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "1";
+            tb_pricipal.Text += btn_1.Text;
             OP = true;
         }
 
@@ -35,7 +35,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "2";
+            tb_pricipal.Text += btn_2.Text;
             OP = true;
         }
         private void button3_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "3";
+            tb_pricipal.Text += btn_3.Text;
             OP = true;
         }
 
@@ -56,7 +56,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "4";
+            tb_pricipal.Text += btn_4.Text;
             OP = true;
         }
 
@@ -67,7 +67,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "5";
+            tb_pricipal.Text += btn_5.Text;
             OP = true;
         }
 
@@ -78,7 +78,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "6";
+            tb_pricipal.Text += btn_6.Text;
             OP = true;
         }
 
@@ -89,7 +89,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "7";
+            tb_pricipal.Text += btn_7.Text;
             OP = true;
         }
 
@@ -100,7 +100,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "8";
+            tb_pricipal.Text += btn_8.Text;
             OP = true;
         }
 
@@ -111,7 +111,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "9";
+            tb_pricipal.Text += btn_9.Text;
             OP = true;
         }
 
@@ -122,7 +122,7 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "0";
+            tb_pricipal.Text += btn_0.Text;
             OP = true;
         }
 
@@ -130,7 +130,7 @@ namespace Calculadora
         {
             if (DOT && !LT) 
             {
-                tb_pricipal.Text += ".";
+                tb_pricipal.Text += btn_dot.Text;
                 DOT = false;
             }
             else if (LT)
@@ -143,7 +143,7 @@ namespace Calculadora
 
         private void btn_result_Click(object sender, EventArgs e)
         {
-            tb_pricipal.Text = "Ainda não programei";
+            tb_pricipal.Text = "Não sei converter string ainda";
             if (LT)
             {
                 tb_pricipal.Text = "0";
@@ -156,7 +156,7 @@ namespace Calculadora
         {
             if (OP && !LT)
             {
-                tb_pricipal.Text += "+";
+                tb_pricipal.Text += btn_plus.Text;
                 OP = false;
             }
         }
@@ -170,7 +170,7 @@ namespace Calculadora
             }
             if (OP)
             {
-                tb_pricipal.Text += "-";
+                tb_pricipal.Text += btn_minus.Text;
                 OP = false;
             }
         }
@@ -179,7 +179,7 @@ namespace Calculadora
         {
             if (OP && !LT)
             {
-                tb_pricipal.Text += "x";
+                tb_pricipal.Text += btn_times.Text;
                 OP = false;
             }
         }
@@ -187,7 +187,7 @@ namespace Calculadora
         {
             if (OP && !LT) 
             {
-                tb_pricipal.Text += "/";
+                tb_pricipal.Text += btn_divid.Text;
                 OP = false;
             }
         }
@@ -206,17 +206,15 @@ namespace Calculadora
                 tb_pricipal.Text = "";
                 LT = false;
             }
-            tb_pricipal.Text += "(";
+            tb_pricipal.Text += btn_par1.Text;
         }
 
         private void btn_par2_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (OP && !LT)
             {
-                tb_pricipal.Text = "";
-                LT = false;
+                tb_pricipal.Text += btn_par2.Text;
             }
-            tb_pricipal.Text += ")";
         }
     }
 }
