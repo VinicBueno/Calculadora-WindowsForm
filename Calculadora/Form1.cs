@@ -12,7 +12,7 @@ namespace Calculadora
 {
     public partial class F_Principal : Form
     {
-        public bool LT = true, DOT = true, OP = true;
+        public bool LT = true, DOT = true, OP = true, Fnegative = false;
         public F_Principal()
         {
             InitializeComponent();
@@ -243,8 +243,10 @@ namespace Calculadora
 
             float[] Val = Valores.ToArray();
             if (ControleStr[0] == '-')
+            {
                 Val[0] *= -1;
-            //tb_pricipal.Text = Convert.ToString(Val[0]);
+                Fnegative = true;
+            }
             Calcular(Val);
             
         }
@@ -254,7 +256,12 @@ namespace Calculadora
             char[] charArr = tb_pricipal.Text.ToCharArray();
             int i = 0;
 
-            foreach(char ch in charArr)
+            if (Fnegative)
+            {
+                charArr[0] = ' ';
+            }
+
+            foreach (char ch in charArr)
             {
                 if (ch == 'x' || ch == '-' || ch == '+' || ch == '÷')
                 {
@@ -262,13 +269,56 @@ namespace Calculadora
                     i++;
                 }
             }
-            if (!Operadores.ContainsValue('x'))
-            {
 
-            }
-            if (!Operadores.ContainsValue('÷'))
-            {
+            float Resultante = 0;
 
+            for (i = 0; i < Operadores.Count; i++)
+            {
+                switch(Operadores[i])
+                {
+                    case 'x':
+                        if(i==0)
+                        {
+                            Resultante = ControlStr[i] * ControlStr[i + 1];
+                        }
+                        else 
+                        {
+                            Resultante = Resultante * ControlStr[i + 1];
+                        }
+                        break;
+                    case '÷':
+                        if (i == 0)
+                        {
+                            Resultante = ControlStr[i] / ControlStr[i + 1];
+                        }
+                        else
+                        {
+                            Resultante = Resultante / ControlStr[i + 1];
+                        }
+                        break;
+                    case '-':
+                        if (i == 0)
+                        {
+                            Resultante = ControlStr[i] - ControlStr[i + 1];
+                        }
+                        else
+                        {
+                            Resultante = Resultante - ControlStr[i + 1];
+                        }
+                        break;
+                    case '+':
+                        if (i == 0)
+                        {
+                            Resultante = ControlStr[i] + ControlStr[i + 1];
+                        }
+                        else
+                        {
+                            Resultante = Resultante + ControlStr[i + 1];
+                        }
+                        break;
+                }
+                Fnegative = false;
+                tb_pricipal.Text = Convert.ToString(Resultante);
             }
         }
     }
