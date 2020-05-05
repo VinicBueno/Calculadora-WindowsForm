@@ -17,6 +17,7 @@ namespace Calculadora
         {
             InitializeComponent();
         }
+        /// Botões de digitos
         private void btn_1_Click(object sender, EventArgs e)
         {
             if(LT)
@@ -125,6 +126,7 @@ namespace Calculadora
             tb_pricipal.Text += btn_0.Text;
             OP = true;
         }
+        // Botões 
 
         private void btn_dot_Click(object sender, EventArgs e)
         {
@@ -140,18 +142,7 @@ namespace Calculadora
                 DOT = false;
             }
         }
-
-        private void btn_result_Click(object sender, EventArgs e)
-        {
-            tb_pricipal.Text = "Não sei converter string ainda";
-            if (LT)
-            {
-                tb_pricipal.Text = "0";
-            }
-            LT = true;
-            DOT = true;
-        }
-
+        // Botões + - * /
         private void btn_plus_Click(object sender, EventArgs e)
         {
             if (OP && !LT)
@@ -191,7 +182,7 @@ namespace Calculadora
                 OP = false;
             }
         }
-
+        // Botões CE ( )
         private void btn_CE_Click(object sender, EventArgs e)
         {
             tb_pricipal.Text = "0";
@@ -214,6 +205,70 @@ namespace Calculadora
             if (OP && !LT)
             {
                 tb_pricipal.Text += btn_par2.Text;
+            }
+        }
+        private void btn_result_Click(object sender, EventArgs e)
+        {
+            char[] charArr = tb_pricipal.Text.ToCharArray();
+            SepararValores(charArr);
+
+            LT = true;
+            DOT = true;
+        }
+
+        // Método para Calcular
+
+        public void SepararValores(params char[] ControleStr)
+        {
+            var Valores = new LinkedList<float>();
+            var Control = new LinkedList<char>(ControleStr);
+            string Separador = "";
+
+                for (LinkedListNode<char> ch = Control.First; ch != null; ch = ch.Next)
+                {
+                    if (char.IsDigit(ch.Value))
+                    {
+                        Separador += ch.Value;
+                    }
+                    if (ch.Next == null)
+                    {
+                        Valores.AddLast(float.Parse(Separador));
+                    }
+                    if (!char.IsDigit(ch.Value) && Separador != "")
+                    {
+                        Valores.AddLast(float.Parse(Separador));
+                        Separador = "";
+                    }
+                }
+
+            float[] Val = Valores.ToArray();
+            if (ControleStr[0] == '-')
+                Val[0] *= -1;
+            //tb_pricipal.Text = Convert.ToString(Val[0]);
+            Calcular(Val);
+            
+        }
+        public void Calcular(params float[]ControlStr)
+        {
+            Dictionary<int, char> Operadores = new Dictionary<int, char>();
+            char[] charArr = tb_pricipal.Text.ToCharArray();
+            int i = 0;
+
+            foreach(char ch in charArr)
+            {
+                if (ch == 'x' || ch == '-' || ch == '+' || ch == '÷')
+                {
+                    Operadores.Add(i, ch);
+                    i++;
+                }
+            }
+            if (!Operadores.ContainsValue('x'))
+            {
+
+            }
+            if (!Operadores.ContainsValue('÷'))
+            {
+
             }
         }
     }
