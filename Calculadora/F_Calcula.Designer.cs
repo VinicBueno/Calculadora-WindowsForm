@@ -255,7 +255,7 @@
             this.btn_par2.Name = "btn_par2";
             this.btn_par2.Size = new System.Drawing.Size(65, 50);
             this.btn_par2.TabIndex = 17;
-            this.btn_par2.Text = ")";
+            this.btn_par2.Text = "!";
             this.btn_par2.UseVisualStyleBackColor = true;
             this.btn_par2.Click += new System.EventHandler(this.btn_par2_Click);
             // 
@@ -266,7 +266,7 @@
             this.btn_par1.Name = "btn_par1";
             this.btn_par1.Size = new System.Drawing.Size(65, 50);
             this.btn_par1.TabIndex = 16;
-            this.btn_par1.Text = "(";
+            this.btn_par1.Text = "Ans";
             this.btn_par1.UseVisualStyleBackColor = true;
             this.btn_par1.Click += new System.EventHandler(this.btn_par1_Click);
             // 

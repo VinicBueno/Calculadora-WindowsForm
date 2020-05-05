@@ -250,11 +250,14 @@ namespace Calculadora
             Calcular(Val);
             
         }
-        public void Calcular(params float[]ControlStr)
+        public void Calcular(params float[] ControlStr)
         {
-            Dictionary<int, char> Operadores = new Dictionary<int, char>();
+            var Operadores = new Dictionary<int, char>();
+            var prior = new List<float>();
             char[] charArr = tb_pricipal.Text.ToCharArray();
-            int i = 0;
+            float Resultante = 0;
+            int i = 0, x = 0;
+            bool Organizador = true, Aux = false; 
 
             if (Fnegative)
             {
@@ -270,26 +273,28 @@ namespace Calculadora
                 }
             }
 
-            float Resultante = 0;
-
             for (i = 0; i < Operadores.Count; i++)
             {
-                switch(Operadores[i])
+                switch (Operadores[i])
                 {
                     case 'x':
-                        if(i==0)
+                        if (Organizador)
                         {
                             Resultante = ControlStr[i] * ControlStr[i + 1];
+                            Organizador = false;
+                            Aux = true;
                         }
-                        else 
+                        else
                         {
                             Resultante = Resultante * ControlStr[i + 1];
                         }
                         break;
                     case '÷':
-                        if (i == 0)
+                        if (Organizador)
                         {
                             Resultante = ControlStr[i] / ControlStr[i + 1];
+                            Organizador = false;
+                            Aux = false;
                         }
                         else
                         {
@@ -297,28 +302,147 @@ namespace Calculadora
                         }
                         break;
                     case '-':
-                        if (i == 0)
+                        Organizador = true;
+                        if(Aux)
                         {
-                            Resultante = ControlStr[i] - ControlStr[i + 1];
-                        }
-                        else
-                        {
-                            Resultante = Resultante - ControlStr[i + 1];
+                            prior.Insert(x, Resultante);
+                            Resultante = 0;
+                            x++;
                         }
                         break;
                     case '+':
-                        if (i == 0)
+                        Organizador = true;
+                        if (Aux)
                         {
-                            Resultante = ControlStr[i] + ControlStr[i + 1];
-                        }
-                        else
-                        {
-                            Resultante = Resultante + ControlStr[i + 1];
+                            prior.Insert(x, Resultante);
+                            Resultante = 0;
+                            x++;
                         }
                         break;
                 }
-                Fnegative = false;
-                tb_pricipal.Text = Convert.ToString(Resultante);
+                if (Operadores[Operadores.Count - 1] == 'x' | Operadores[Operadores.Count - 1] == '÷')
+                {
+                    prior.Insert(x, Resultante);
+                }
+            }
+
+            Resultante = 0;
+            x = 0;
+
+            try 
+            {
+                for (i = 0; i < Operadores.Count; i++)
+                {
+                    switch (Operadores[i])
+                    {
+                        case 'x':
+                        case '÷':
+                            if (i == 0)
+                            {
+                                Resultante += prior[x];
+                                x++;
+                            }
+                            if (i>0)
+                            {
+                                if (Operadores[i - 1] == '+') 
+                                {// 1+4*3-2 123
+                                    Resultante += prior[x];
+                                    x++;
+                                }
+                                if (Operadores[i - 1] == '-') 
+                                {
+                                    Resultante -= prior[x];
+                                    x++;
+                                }
+                            }
+                            break;
+
+                        case '-':
+                            if (i == 0)
+                            {
+                                if (Operadores.Count > 1) 
+                                {
+                                   if (Operadores[i + 1] == 'x' | Operadores[i + 1] == '÷') 
+                                   {
+                                       Resultante += ControlStr[i];
+                                   }
+                                   else
+                                   {
+                                       Resultante = ControlStr[i] - ControlStr[i + 1];
+                                   }
+                                }
+                                else
+                                {
+                                Resultante = ControlStr[i] - ControlStr[i + 1];
+                                }
+                            }
+                            else
+                            {
+                                if (i < Operadores.Count - 1)
+                                {
+                                    if (Operadores[i + 1] == 'x' | Operadores[i + 1] == '÷') 
+                                    {
+                                        
+                                    }
+                                    else
+                                    {
+                                        Resultante -= ControlStr[i+1];
+                                    }
+                                }
+                                else
+                                {
+                                    Resultante -= ControlStr[i+1];
+                                }
+                            }
+                            break;
+
+                        case '+':
+                            if (i == 0)
+                            {
+                                if (Operadores.Count > 1) 
+                                {
+                                    if (Operadores[i + 1] == 'x' | Operadores[i + 1] == '÷') 
+                                    {
+                                        Resultante += ControlStr[i];
+                                    }
+                                    else
+                                    {
+                                        Resultante = ControlStr[i] + ControlStr[i + 1];
+                                    }
+                                }
+                                else
+                                {
+                                    Resultante = ControlStr[i] + ControlStr[i + 1];
+                                }
+                            }
+                            else
+                            {
+                                if (i < Operadores.Count - 1)
+                                {
+                                    if (Operadores[i + 1] == 'x' | Operadores[i + 1] == '÷') 
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        Resultante += ControlStr[i+1];
+                                    }
+                                }
+                                else
+                                {
+                                    Resultante += ControlStr[i+1];
+                                }
+                            }
+                            break;
+                    }
+                }
+                    Fnegative = false;
+                    tb_pricipal.Text = Convert.ToString(Resultante);
+            }
+            catch(Exception e)
+            {
+                tb_pricipal.Text = "ERROR!";
+                Console.WriteLine(e);
             }
         }
     }
