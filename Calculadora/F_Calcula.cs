@@ -16,8 +16,11 @@ namespace Calculadora
         public F_Principal()
         {
             InitializeComponent();
+            SepararValores("0+0".ToArray());
         }
-        /// Botões de digitos
+
+        // Botões digitos
+
         private void btn_1_Click(object sender, EventArgs e)
         {
             if(LT)
@@ -28,7 +31,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_1.Text;
             OP = true;
         }
-
         private void btn_2_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -39,7 +41,7 @@ namespace Calculadora
             tb_pricipal.Text += btn_2.Text;
             OP = true;
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void btn_3_Click(object sender, EventArgs e)
         {
             if (LT)
             {
@@ -49,7 +51,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_3.Text;
             OP = true;
         }
-
         private void btn_4_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -60,7 +61,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_4.Text;
             OP = true;
         }
-
         private void btn_5_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -71,7 +71,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_5.Text;
             OP = true;
         }
-
         private void btn_6_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -82,7 +81,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_6.Text;
             OP = true;
         }
-
         private void btn_7_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -93,7 +91,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_7.Text;
             OP = true;
         }
-
         private void btn_8_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -104,7 +101,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_8.Text;
             OP = true;
         }
-
         private void btn_9_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -115,7 +111,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_9.Text;
             OP = true;
         }
-
         private void btn_0_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -126,8 +121,6 @@ namespace Calculadora
             tb_pricipal.Text += btn_0.Text;
             OP = true;
         }
-        // Botões 
-
         private void btn_dot_Click(object sender, EventArgs e)
         {
             if (DOT && !LT) 
@@ -142,7 +135,9 @@ namespace Calculadora
                 DOT = false;
             }
         }
-        // Botões + - * /
+
+        // Botões de operadores
+
         private void btn_plus_Click(object sender, EventArgs e)
         {
             if (OP && !LT)
@@ -151,7 +146,6 @@ namespace Calculadora
                 OP = false;
             }
         }
-
         private void btn_minus_Click(object sender, EventArgs e)
         {
             if (LT)
@@ -165,7 +159,6 @@ namespace Calculadora
                 OP = false;
             }
         }
-
         private void btn_times_Click(object sender, EventArgs e)
         {
             if (OP && !LT)
@@ -182,7 +175,9 @@ namespace Calculadora
                 OP = false;
             }
         }
-        // Botões CE ( )
+
+        // Botões CE 
+
         private void btn_CE_Click(object sender, EventArgs e)
         {
             tb_pricipal.Text = "0";
@@ -190,23 +185,6 @@ namespace Calculadora
             DOT=true;
         }
 
-        private void btn_par1_Click(object sender, EventArgs e)
-        {
-            if (LT)
-            {
-                tb_pricipal.Text = "";
-                LT = false;
-            }
-            tb_pricipal.Text += btn_par1.Text;
-        }
-
-        private void btn_par2_Click(object sender, EventArgs e)
-        {
-            if (OP && !LT)
-            {
-                tb_pricipal.Text += btn_par2.Text;
-            }
-        }
         private void btn_result_Click(object sender, EventArgs e)
         {
             char[] charArr = tb_pricipal.Text.ToCharArray();
@@ -216,7 +194,73 @@ namespace Calculadora
             DOT = true;
         }
 
+        private void btn_elevado_Click(object sender, EventArgs e)
+        {
+            float valor;
+            if(float.TryParse(tb_pricipal.Text, out valor))
+            {
+                valor *= valor;
+                tb_pricipal.Text=valor.ToString();
+            }
+            LT = true;
+            DOT=true;
+        }
+
+        private void btn_percent_Click(object sender, EventArgs e)
+        {
+            float valor;
+            if (float.TryParse(tb_pricipal.Text, out valor))
+            {
+                valor /= 100;
+                tb_pricipal.Text = valor.ToString();
+            }
+            LT = true;
+            DOT = true;
+        }
+
+        private void btn_fatorial_Click(object sender, EventArgs e) 
+        {
+            int fator = 0;
+
+            if(int.TryParse(tb_pricipal.Text, out fator))
+            {
+                if (fator < 0)
+                    tb_pricipal.Text = "Syntax ERROR";
+                else
+                    Fatorial(fator);
+            }
+            else
+            {
+                tb_pricipal.Text="Syntax ERROR";
+            }
+
+            LT = true;
+            DOT=true;
+        }
+
         // Método para Calcular
+
+        public void Fatorial(int fator)
+        {
+            if (fator == 0 | fator == 1) 
+            {
+                tb_pricipal.Text = "1";
+            }
+            else if (fator > 1 && fator < 17)
+            {
+                int f = fator - 1;
+                while (f > 0)
+                {
+                    fator *= f;
+                    f--;
+                }
+                tb_pricipal.Text = fator.ToString();
+            }
+            else 
+            {
+                tb_pricipal.Text = "Valor muito grande";
+            }
+        }
 
         public void SepararValores(params char[] ControleStr)
         {
