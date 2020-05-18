@@ -12,168 +12,172 @@ namespace Calculadora
 {
     public partial class F_Principal : Form
     {
-        public bool LT = true, DOT = true, OP = true, Fnegative = false;
+        public bool NewStringAble = true, DotAble = true, LastDigit = true, FirstNegative = false;
+        float Ans = 0;
         public F_Principal()
         {
             InitializeComponent();
             SepararValores("0+0".ToArray());
         }
 
-        // Botões digitos
+        // Digits Buttons
 
         private void btn_1_Click(object sender, EventArgs e)
         {
-            if(LT)
+            if(NewStringAble)
             { 
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_1.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_2_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_2.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_3_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_3.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_4_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_4.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_5_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_5.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_6_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_6.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_7_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_7.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_8_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_8.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_9_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
             tb_pricipal.Text += btn_9.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_0_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
             }
             tb_pricipal.Text += btn_0.Text;
-            OP = true;
+            LastDigit = true;
         }
         private void btn_dot_Click(object sender, EventArgs e)
         {
-            if (DOT && !LT) 
+            if (DotAble && !NewStringAble && LastDigit) 
             {
-                tb_pricipal.Text += btn_dot.Text;
-                DOT = false;
+                tb_pricipal.Text += ",";
+                DotAble = false;
             }
-            else if (LT)
+            else if (NewStringAble)
             {
-                tb_pricipal.Text = "0.";
-                LT = false;
-                DOT = false;
+                tb_pricipal.Text = "0,";
+                NewStringAble = false;
+                DotAble = false;
             }
         }
 
-        // Botões de operadores
+        // Botões de Operadores
 
         private void btn_plus_Click(object sender, EventArgs e)
         {
-            if (OP && !LT)
+            if (LastDigit && !NewStringAble)
             {
                 tb_pricipal.Text += btn_plus.Text;
-                OP = false;
+                LastDigit = false;
             }
+            DotAble= true;
         }
         private void btn_minus_Click(object sender, EventArgs e)
         {
-            if (LT)
+            if (NewStringAble)
             {
                 tb_pricipal.Text = "";
-                LT = false;
+                NewStringAble = false;
             }
-            if (OP)
+            if (LastDigit)
             {
                 tb_pricipal.Text += btn_minus.Text;
-                OP = false;
+                LastDigit = false;
             }
+            DotAble= true;
         }
         private void btn_times_Click(object sender, EventArgs e)
         {
-            if (OP && !LT)
+            if (LastDigit && !NewStringAble)
             {
                 tb_pricipal.Text += btn_times.Text;
-                OP = false;
+                LastDigit = false;
             }
+            DotAble= true;
         }
         private void btn_divid_Click(object sender, EventArgs e)
         {
-            if (OP && !LT) 
+            if (LastDigit && !NewStringAble) 
             {
                 tb_pricipal.Text += btn_divid.Text;
-                OP = false;
+                LastDigit = false;
             }
+            DotAble= true;
         }
 
         // Botões CE 
@@ -181,17 +185,22 @@ namespace Calculadora
         private void btn_CE_Click(object sender, EventArgs e)
         {
             tb_pricipal.Text = "0";
-            LT = true;
-            DOT=true;
+            NewStringAble = true;
+            DotAble = true;
         }
 
         private void btn_result_Click(object sender, EventArgs e)
         {
-            char[] charArr = tb_pricipal.Text.ToCharArray();
-            SepararValores(charArr);
-
-            LT = true;
-            DOT = true;
+            try
+            {
+                SepararValores(tb_pricipal.Text.ToCharArray());
+            }
+            catch(Exception ex)
+            {
+                tb_pricipal.Text = "Syntax ERROR";
+                Console.WriteLine(ex);
+            }
+            tb_pricipal.Text = Convert.ToString(Ans);
         }
 
         private void btn_elevado_Click(object sender, EventArgs e)
@@ -202,8 +211,8 @@ namespace Calculadora
                 valor *= valor;
                 tb_pricipal.Text=valor.ToString();
             }
-            LT = true;
-            DOT=true;
+            NewStringAble = true;
+            DotAble=true;
         }
 
         private void btn_percent_Click(object sender, EventArgs e)
@@ -214,8 +223,8 @@ namespace Calculadora
                 valor /= 100;
                 tb_pricipal.Text = valor.ToString();
             }
-            LT = true;
-            DOT = true;
+            NewStringAble = true;
+            DotAble = true;
         }
 
         private void btn_fatorial_Click(object sender, EventArgs e) 
@@ -234,8 +243,8 @@ namespace Calculadora
                 tb_pricipal.Text="Syntax ERROR";
             }
 
-            LT = true;
-            DOT=true;
+            NewStringAble = true;
+            DotAble=true;
         }
 
         // Método para Calcular
@@ -270,26 +279,26 @@ namespace Calculadora
 
                 for (LinkedListNode<char> ch = Control.First; ch != null; ch = ch.Next)
                 {
-                    if (char.IsDigit(ch.Value))
-                    {
-                        Separador += ch.Value;
-                    }
+                    if (char.IsDigit(ch.Value) | ch.Value == ',')
+                        {
+                            Separador += ch.Value;
+                        }
+                    if (!char.IsDigit(ch.Value) && Separador != "" && ch.Value != ',')
+                        {
+                            Valores.AddLast(float.Parse(Separador));
+                            Separador = "";
+                        }
                     if (ch.Next == null)
-                    {
-                        Valores.AddLast(float.Parse(Separador));
-                    }
-                    if (!char.IsDigit(ch.Value) && Separador != "")
-                    {
-                        Valores.AddLast(float.Parse(Separador));
-                        Separador = "";
-                    }
+                        {
+                            Valores.AddLast(float.Parse(Separador));
+                        }
                 }
 
             float[] Val = Valores.ToArray();
             if (ControleStr[0] == '-')
             {
                 Val[0] *= -1;
-                Fnegative = true;
+                FirstNegative = true;
             }
             Calcular(Val);
             
@@ -303,7 +312,7 @@ namespace Calculadora
             int i = 0, x = 0;
             bool Organizador = true, Aux = false; 
 
-            if (Fnegative)
+            if (FirstNegative)
             {
                 charArr[0] = ' ';
             }
@@ -480,8 +489,14 @@ namespace Calculadora
                             break;
                     }
                 }
-                    Fnegative = false;
-                    tb_pricipal.Text = Convert.ToString(Resultante);
+                if (i == 0)
+                    Resultante = ControlStr[0];
+
+                FirstNegative = false;
+                Ans = Resultante;
+
+                if (Ans % 1 != 0)
+                    DotAble = false;
             }
             catch(Exception e)
             {
